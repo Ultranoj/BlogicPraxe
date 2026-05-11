@@ -3,6 +3,7 @@
 import { Loader, Modal, noop, Stack, Text, Title } from "@mantine/core";
 import { Construction } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import { useSystemSettings } from "@/hooks/useSystemSettings";
 
@@ -10,6 +11,10 @@ interface MaintenanceModalProps {
   children: ReactNode;
 }
 
+export default async function Page() {
+  const t = await getTranslations();
+  return <Title>{t("page2.listings.title")}</Title>;
+}
 export function MaintenanceModal({ children }: MaintenanceModalProps) {
   const t = useTranslations();
   const { data: systemSettings } = useSystemSettings();
